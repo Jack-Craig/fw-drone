@@ -1,2 +1,4 @@
 05/18/2021
 Base file structure and make file taken from hiltmon.com/blog/2013/07/03/a-simple-c-plus-plus-prpject-structure
+Testing the addition of WiringPi library, which helps simplify access to GPIO pins on the raspberry pi
+To install wiringPi, clone from source mirror https://github.com/wiringpi/wiringpi. The original repo seems to be inactive and someone else has taken over on the project since then.

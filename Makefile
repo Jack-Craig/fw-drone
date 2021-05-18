@@ -8,11 +8,12 @@ SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -g
+LIB := -lwiringPi
 INC := -I include
 
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(TARGETDIR)
-	@echo " $(CC) $^ -o $(TARGET)"; $(CC) $^ -o $(TARGET)
+	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
@@ -24,10 +25,10 @@ clean:
 
 # Tests
 tester:
-	$(CC) $(CFLAGS) test/tester.cpp $(INC) -o bin/tester
+	$(CC) $(CFLAGS) test/tester.cpp $(INC) -o bin/tester $(LIB)
 
 # Spikes
 ticket:
-	$(CC) $(CFLAGS) spikes/ticket.cpp $(INC) -o bin/ticket
+	$(CC) $(CFLAGS) spikes/ticket.cpp $(INC) -o bin/ticket $(LIB)
 
 .PHONY: clean
